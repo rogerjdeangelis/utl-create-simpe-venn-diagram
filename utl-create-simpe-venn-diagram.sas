@@ -1,6 +1,10 @@
 Create simple three part venn diagam
 
 Not as obvious as you might think
+
+https://github.com/rogerjdeangelis/utl-create-simpe-venn-diagram
+https://github.com/rogerjdeangelis/utl-macros-used-in-many-of-rogerjdeangelis-repositories
+
  _                   _
 (_)_ __  _ __  _   _| |_
 | | `_ \| `_ \| | | | __|
