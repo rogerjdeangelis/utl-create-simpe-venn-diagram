@@ -141,6 +141,7 @@ Create simple ascii three part venn diagam
 
     */
 
+
     %macro utlvenn
          (
           uinmema=sashelp.class
@@ -203,7 +204,7 @@ Create simple ascii three part venn diagam
       from &uinmem1;
 
      select count(distinct &uvarb) into :udstb
-      from &uinmem1;
+      from &uinmem2;
 
 
      select count(distinct &uvara) into :unotb
@@ -228,13 +229,17 @@ Create simple ascii three part venn diagam
     quit;
     run;
 
-    %let udstab=%eval(&unota + &unotb + &uaib);   /* total distinct*/
-    %let uaub=%eval(&uina + &uinb);               /* a union b     */
-    %put unota=&unota;                            /* not in  a     */
-    %put unotb=&unotb;                            /* not in  b     */
-    %put uaib=&uaib;                              /* a intersect b */
-    %put uina=&uina;                              /* in a          */
-    %put uinb=&uinb;                              /* in b          */
+    %let udstab=%eval(&unota + &unotb + &uaib);    /* total distinct*/
+    %let uaub=%eval(&uina + &uinb);                /* a union b     */
+
+    %put unota=&=unota;                            /* not in  a     */
+    %put unotb=&=unotb;                            /* not in  b     */
+    %put uaib =&=uaib;                             /* a intersect b */
+    %put uina =&=uina;                             /* in a          */
+    %put uinb =&=uinb;                             /* in b          */
+
+    %put uinb=&=udsta ;                            /* distinct in a  */
+    %put uinb=&=udstb ;                            /* distinct in b  */
 
     data _null_;
 
@@ -302,12 +307,21 @@ Create simple ascii three part venn diagam
       if _n_ le 2  then name=cats('Classb',_n_);
     run;quit;
 
+
     %utlvenn
      (
         uinmema = work.classa
        ,uinmemb = work.classb
        ,uvara   = name
        ,uvarb   = name
+    );
+
+    %utlvenn
+     (
+        uinmema = sashelp.prdsale
+       ,uinmemb = sashelp.prdsal2
+       ,uvara   = product
+       ,uvarb   = product
     );
 
     /*              _
